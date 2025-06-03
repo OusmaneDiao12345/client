@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos - SenAbonnement</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<style>
+    /* Reset et styles de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --light-color: #ecf0f1;
+    --dark-color: #2c3e50;
+    --text-color: #333;
+    --text-light: #7f8c8d;
+    --white: #fff;
+    --black: #000;
+    --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: var(--light-color);
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-color);
+    transition: var(--transition);
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background-color: var(--secondary-color);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--secondary-color);
+    color: var(--white);
+}
+
+.btn-login {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+}
+
+.btn-login:hover {
+    background-color: #1a252f;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+/* Header */
+header {
+    background-color: var(--white);
+    box-shadow: var(--shadow);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    padding: 15px 0;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+}
+
+logo h1 span {
+    color: var(--secondary-color);
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+
+nav ul li a {
+    font-weight: 600;
+    position: relative;
+}
+
+nav ul li a:after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--secondary-color);
+    transition: var(--transition);
+}
+
+nav ul li a:hover:after,
+nav ul li a.active:after {
+    width: 100%;
+}
+
+.mobile-menu {
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('assets/images/hero-bg.jpg') no-repeat center center/cover;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding-top: 80px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto 30px;
+}
+
+/* Services Section */
+.services {
+    padding: 80px 0;
+    background-color: var(--white);
+}
+
+.services h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--primary-color);
+    font-size: 2.5rem;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+.service-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: var(--white);
+}
+
+.service-icon.netflix {
+    background-color: #e50914;
+}
+
+.service-icon.canal {
+    background-color: #00aff0;
+}
+
+.service-icon.prime {
+    background-color: #00a8e1;
+}
+
+.service-icon.iptv {
+    background-color: #8e44ad;
+}
+
+.service-card h3 {
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.service-card p {
+    color: var(--text-light);
+    margin-bottom: 20px;
+}
+
+/* Features Section */
+.features {
+    padding: 80px 0;
+    background-color: #f9f9f9;
+}
+
+.features h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--primary-color);
+    font-size: 2.5rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.feature {
+    text-align: center;
+    padding: 30px;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+}
+
+.feature i {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+}
+
+.feature h3 {
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+/* Testimonials Section */
+.testimonials {
+    padding: 80px 0;
+    background-color: var(--white);
+}
+
+.testimonials h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--primary-color);
+    font-size: 2.5rem;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.testimonial {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+.client-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.client-info img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.client-info h4 {
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.client-info span {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.testimonial p {
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+.rating {
+    color: #f1c40f;
+}
+
+/* Page Header */
+.page-header {
+    padding: 120px 0 60px;
+    text-align: center;
+    background-color: var(--primary-color);
+    color: var(--white);
+    margin-top: 80px;
+}
+
+.page-header h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.page-header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Subscriptions Page */
+.subscriptions {
+    padding: 80px 0;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.section-title .service-icon {
+    margin-right: 20px;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.pricing-card {
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+    position: relative;
+    transition: var(--transition);
+}
+
+.pricing-card:hover {
+    transform: translateY(-10px);
+}
+
+.pricing-card.popular {
+    border: 2px solid var(--secondary-color);
+}
+
+.popular-badge {
+    position: absolute;
+    top: -15px;
+    right: 20px;
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 5px 15px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.pricing-card h3 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+}
+
+.price span {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--text-light);
+}
+
+.pricing-card ul {
+    margin-bottom: 30px;
+}
+
+.pricing-card ul li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.pricing-card ul li i {
+    color: var(--secondary-color);
+    margin-right: 10px;
+}
+
+/* FAQ Section */
+.faq {
+    padding: 80px 0;
+    background-color: #f9f9f9;
+}
+
+.faq h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--primary-color);
+    font-size: 2.5rem;
+}
+
+.faq-grid {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    margin-bottom: 15px;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.faq-question {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.faq-question:hover {
+    background-color: #f1f1f1;
+}
+
+.faq-question h3 {
+    color: var(--primary-color);
+}
+
+.faq-question i {
+    transition: var(--transition);
+}
+
+.faq-answer {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.faq-answer p {
+    padding-bottom: 20px;
+}
+
+.faq-item.active .faq-question {
+    background-color: var(--secondary-color);
+    color: var(--white);
+}
+
+.faq-item.active .faq-question h3 {
+    color: var(--white);
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+    color: var(--white);
+}
+
+.faq-item.active .faq-answer {
+    max-height: 300px;
+}
+
+/* About Page */
+.about-section, .mission-section {
+    padding: 80px 0;
+}
+
+.about-content, .mission-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.about-image, .mission-image {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.about-image img, .mission-image img {
+    transition: var(--transition);
+}
+
+.about-image:hover img, .mission-image:hover img {
+    transform: scale(1.05);
+}
+
+.about-text h2, .mission-text h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.about-text p, .mission-text p {
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.mission-text ul {
+    margin-top: 20px;
+}
+
+.mission-text ul li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.mission-text ul li i {
+    color: var(--secondary-color);
+    margin-right: 10px;
+}
+
+/* Stats Section */
+.stats-section {
+    padding: 80px 0;
+    background-color: var(--primary-color);
+    color: var(--white);
+    text-align: center;
+}
+
+.stats-section h2 {
+    margin-bottom: 50px;
+    font-size: 2.5rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+}
+
+.stat-item {
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--secondary-color);
+}
+
+.stat-label {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Team Section */
+.team-section {
+    padding: 80px 0;
+    background-color: var(--white);
+}
+
+.team-section h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--primary-color);
+    font-size: 2.5rem;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.team-member {
+    text-align: center;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+}
+
+.team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 20px;
+    border: 5px solid var(--secondary-color);
+}
+
+.team-member h3 {
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.team-member p {
+    color: var(--text-light);
+    margin-bottom: 15px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-links a {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+/* CTA Section */
+.cta-section {
+    padding: 80px 0;
+    text-align: center;
+    background-color: var(--secondary-color);
+    color: var(--white);
+}
+
+.cta-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.cta-section p {
+    max-width: 700px;
+    margin: 0 auto 30px;
+    font-size: 1.2rem;
+}
+
+/* Contact Page */
+.contact-section {
+    padding: 80px 0;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+}
+
+.contact-info h2, .contact-form h2 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+}
+
+.info-item {
+    display: flex;
+    margin-bottom: 25px;
+}
+
+.info-item i {
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    margin-right: 20px;
+    margin-top: 5px;
+}
+
+.info-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.contact-form form {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* FAQ Contact */
+.faq-contact {
+    padding: 60px 0;
+    background-color: #f9f9f9;
+}
+
+.faq-contact h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--primary-color);
+    font-size: 2.5rem;
+}
+
+/* Map Section */
+.map-section {
+    padding: 60px 0;
+}
+
+.map-section h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--primary-color);
+    font-size: 2.5rem;
+}
+
+.map-container {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 60px 0 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.footer-col h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--white);
+}
+
+.footer-col p {
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li i {
+    margin-right: 10px;
+    color: var(--secondary-color);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.payment-methods i {
+    font-size: 1.5rem;
+    margin-left: 15px;
+    color: var(--white);
+    opacity: 0.7;
+    transition: var(--transition);
+}
+
+.payment-methods i:hover {
+    opacity: 1;
+    color: var(--secondary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .about-content, .mission-content, .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .mission-content {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background-color: var(--white);
+        transition: var(--transition);
+    }
+    
+    nav.active {
+        left: 0;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        padding: 30px;
+    }
+    
+    nav ul li {
+        margin: 15px 0;
+    }
+    
+    .mobile-menu {
+        display: block;
+    }
+    
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
+    .section-title h2, .features h2, .testimonials h2, .stats-section h2, .team-section h2, .cta-section h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+    
+    .btn-login {
+        padding: 5px 10px;
+        font-size: 0.8rem;
+    }
+    
+    .hero {
+        padding-top: 60px;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .payment-methods {
+        margin-top: 15px;
+    }
+    
+    .payment-methods i {
+        margin: 0 7px;
+    }
+}
+</style>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Sen<span>Abonnement</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="abonnements.html">Abonnements</a></li>
+                    <li><a href="apropos.html" class="active">À propos</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#" class="btn-login"><i class="fas fa-user"></i> Connexion</a></li>
+                </ul>
+            </nav>
+            <!-- Icône panier ajoutée dynamiquement par JS -->
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>À propos de nous</h1>
+            <p>Découvrez notre histoire, notre mission et notre équipe</p>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Notre Histoire</h2>
+                    <p>Fondé en 2018 à Dakar, SenAbonnement est né de la volonté de rendre accessible les services de streaming premium à tous les Sénégalais. Nous avons commencé avec une petite équipe de 3 personnes et aujourd'hui, nous servons des milliers de clients satisfaits à travers toute l'Afrique de l'Ouest.</p>
+                    <p>Notre croissance fulgurante s'explique par notre engagement envers la qualité de service et notre capacité à négocier les meilleurs tarifs auprès des fournisseurs.</p>
+                </div>
+                <div class="about-image">
+                    <img src="assets/images/about1.jpg" alt="Notre équipe">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mission-section">
+        <div class="container">
+            <div class="mission-content">
+                <div class="mission-image">
+                    <img src="assets/images/mission.jpg" alt="Notre mission">
+                </div>
+                <div class="mission-text">
+                    <h2>Notre Mission</h2>
+                    <p>Notre mission est simple : démocratiser l'accès aux contenus premium en proposant des abonnements à des prix abordables sans compromis sur la qualité.</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Offrir les meilleurs prix du marché</li>
+                        <li><i class="fas fa-check"></i> Garantir un service fiable et sécurisé</li>
+                        <li><i class="fas fa-check"></i> Fournir un support client réactif</li>
+                        <li><i class="fas fa-check"></i> Innover constamment pour améliorer l'expérience client</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container">
+            <h2>SenAbonnement en chiffres</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-count="15000">0</div>
+                    <div class="stat-label">Clients satisfaits</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="98">0</div>
+                    <div class="stat-label">% de satisfaction</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="12">0</div>
+                    <div class="stat-label">Services disponibles</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="24">0</div>
+                    <div class="stat-label">Support 24/7</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <div class="container">
+            <h2>Notre Équipe</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="assets/images/team1.jpg" alt="Directeur Général">
+                    <h3>Mamadou Ndiaye</h3>
+                    <p>Directeur Général</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="assets/images/team2.jpg" alt="Responsable Commercial">
+                    <h3>Aïssatou Diallo</h3>
+                    <p>Responsable Commercial</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="assets/images/team3.jpg" alt="Responsable Support">
+                    <h3>Cheikh Sow</h3>
+                    <p>Responsable Support</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="assets/images/team4.jpg" alt="Responsable Technique">
+                    <h3>Fatou Bâ</h3>
+                    <p>Responsable Technique</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Prêt à profiter de nos services?</h2>
+            <p>Rejoignez des milliers de clients satisfaits et accédez aux meilleurs contenus à des prix imbattables.</p>
+            <a href="abonnements.html" class="btn-primary">Voir nos abonnements</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>SenAbonnement</h3>
+                    <p>Leader des abonnements premium à prix réduits en Afrique de l'Ouest.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Liens rapides</h3>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="abonnements.html">Abonnements</a></li>
+                        <li><a href="apropos.html">À propos</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="abonnements.html#netflix">Netflix</a></li>
+                        <li><a href="abonnements.html#canal">Canal+</a></li>
+                        <li><a href="abonnements.html#prime">Prime Video</a></li>
+                        <li><a href="abonnements.html#iptv">IPTV</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Dakar, Sénégal</li>
+                        <li><i class="fas fa-phone"></i> +221 77 123 45 67</li>
+                        <li><i class="fas fa-envelope"></i> contact@senabonnement.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 SenAbonnement. Tous droits réservés.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu');
+        const nav = document.querySelector('nav');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            nav.classList.toggle('active');
+            this.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    // Close mobile menu if open
+                    if (nav.classList.contains('active')) {
+                        nav.classList.remove('active');
+                        mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                    }
+                }
+            });
+        });
+
+        // FAQ accordion (if present)
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                faqItem.classList.toggle('active');
+                // Close other open items
+                faqQuestions.forEach(q => {
+                    if (q !== this && q.parentElement.classList.contains('active')) {
+                        q.parentElement.classList.remove('active');
+                    }
+                });
+            });
+        });
+
+        // Animate stats counter
+        const statNumbers = document.querySelectorAll('.stat-number');
+        if (statNumbers.length > 0) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            statNumbers.forEach(number => {
+                observer.observe(number);
+            });
+        }
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-count'));
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    clearInterval(timer);
+                    current = target;
+                }
+                element.textContent = Math.floor(current);
+            }, 16);
+        }
+
+        // Form submission (if present)
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+                alert(`Merci ${name}! Votre message a été envoyé. Nous vous contacterons bientôt.`);
+                this.reset();
+            });
+        }
+
+        // Add active class to current page in navigation
+        const currentPage = location.pathname.split('/').pop();
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            const linkPage = link.getAttribute('href').split('/').pop();
+            if (linkPage === currentPage) {
+                link.classList.add('active');
+            } else if (currentPage === '' && linkPage === 'index.html') {
+                link.classList.add('active');
+            }
+        });
+
+        // Scroll to top button
+        const scrollToTopBtn = document.createElement('button');
+        scrollToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+        scrollToTopBtn.classList.add('scroll-to-top');
+        scrollToTopBtn.style.display = 'none';
+        scrollToTopBtn.style.position = 'fixed';
+        scrollToTopBtn.style.bottom = '30px';
+        scrollToTopBtn.style.right = '30px';
+        scrollToTopBtn.style.zIndex = '9999';
+        scrollToTopBtn.style.background = '#3498db';
+        scrollToTopBtn.style.color = '#fff';
+        scrollToTopBtn.style.border = 'none';
+        scrollToTopBtn.style.borderRadius = '50%';
+        scrollToTopBtn.style.width = '45px';
+        scrollToTopBtn.style.height = '45px';
+        scrollToTopBtn.style.cursor = 'pointer';
+        scrollToTopBtn.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
+        document.body.appendChild(scrollToTopBtn);
+
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.style.display = 'block';
+            } else {
+                scrollToTopBtn.style.display = 'none';
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    });
+    </script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+    const PANIER_KEY = 'senabonnement_panier';
+function getPanier() { return JSON.parse(localStorage.getItem(PANIER_KEY) || '[]'); }
+function setPanier(panier) { localStorage.setItem(PANIER_KEY, JSON.stringify(panier)); }
+function showPaiementModal(item) {
+    let modal = document.getElementById('paiement-modal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'paiement-modal';
+        modal.style.position = 'fixed';
+        modal.style.top = '0';
+        modal.style.left = '0';
+        modal.style.width = '100vw';
+        modal.style.height = '100vh';
+        modal.style.background = 'rgba(0,0,0,0.5)';
+        modal.style.display = 'flex';
+        modal.style.alignItems = 'center';
+        modal.style.justifyContent = 'center';
+        modal.style.zIndex = '99999';
+        modal.innerHTML = `
+            <div style="background:#fff;padding:30px 25px;border-radius:10px;max-width:370px;width:100%;box-shadow:0 5px 20px #0002;position:relative;">
+                <button id="close-paiement-modal" style="position:absolute;top:10px;right:10px;background:none;border:none;font-size:1.3rem;cursor:pointer;">&times;</button>
+                <h3 style="margin-bottom:20px;color:#e67e22;">Paiement</h3>
+                <div style="margin-bottom:15px;">
+                    <strong>${item.nom}</strong><br>
+                    <span style="color:#e67e22;font-weight:600;">${item.prix.toLocaleString()} XOF</span>
+                </div>
+                <form id="paiement-form">
+                    <input type="text" id="client-nom" placeholder="Votre nom complet" required style="width:100%;margin-bottom:10px;padding:8px;">
+                    <input type="email" id="client-email" placeholder="Votre email" required style="width:100%;margin-bottom:10px;padding:8px;">
+                    <input type="tel" id="client-tel" placeholder="Votre téléphone" required style="width:100%;margin-bottom:10px;padding:8px;">
+                    <label>Moyen de paiement :</label>
+                    <select id="paiement-methode" required style="width:100%;margin:10px 0 20px 0;padding:8px;">
+                        <option value="" disabled selected>Choisir</option>
+                        <option value="orange">Orange Money</option>
+                        <option value="wave">Wave</option>
+                        <option value="carte">Carte bancaire</option>
+                        <option value="paypal">PayPal</option>
+                    </select>
+                    <div id="paiement-details"></div>
+                    <button type="submit" style="width:100%;background:#e67e22;color:#fff;border:none;padding:12px 0;border-radius:5px;font-weight:600;font-size:1rem;cursor:pointer;">Valider le paiement</button>
+                </form>
+            </div>
+        `;
+        document.body.appendChild(modal);
+    } else {
+        modal.style.display = 'flex';
+    }
+    modal.querySelector('#close-paiement-modal').onclick = () => {
+        modal.style.display = 'none';
+    };
+    const paiementMethode = modal.querySelector('#paiement-methode');
+    const paiementDetails = modal.querySelector('#paiement-details');
+    paiementMethode.onchange = function() {
+        let html = '';
+        if (this.value === 'orange' || this.value === 'wave') {
+            html = `
+                <input type="tel" id="paiement-numero" placeholder="Numéro de téléphone du compte" required style="width:100%;margin-bottom:10px;padding:8px;">
+                <input type="text" id="paiement-preuve" placeholder="Référence ou preuve de paiement" required style="width:100%;margin-bottom:10px;padding:8px;">
+            `;
+        } else if (this.value === 'carte') {
+            html = `
+                <input type="text" id="paiement-carte-num" placeholder="Numéro de carte" required style="width:100%;margin-bottom:10px;padding:8px;">
+                <input type="text" id="paiement-carte-exp" placeholder="MM/AA" required style="width:48%;margin-bottom:10px;padding:8px;display:inline-block;">
+                <input type="text" id="paiement-carte-cvc" placeholder="CVC" required style="width:48%;margin-bottom:10px;padding:8px;display:inline-block;float:right;">
+            `;
+        } else {
+            html = '';
+        }
+        paiementDetails.innerHTML = html;
+    };
+    modal.querySelector('#paiement-form').onsubmit = function(e) {
+        e.preventDefault();
+        if (!requireAuthBeforeOrder(() => {})) return;
+        const nom = modal.querySelector('#client-nom').value.trim();
+        const email = modal.querySelector('#client-email').value.trim();
+        const tel = modal.querySelector('#client-tel').value.trim();
+        const methode = modal.querySelector('#paiement-methode').value;
+        if (!nom || !email || !tel || !methode) return;
+        if (methode === 'orange' || methode === 'wave') {
+            const num = modal.querySelector('#paiement-numero')?.value.trim();
+            const preuve = modal.querySelector('#paiement-preuve')?.value.trim();
+            if (!num || !preuve) {
+                alert('Veuillez remplir les informations de paiement mobile.');
+                return;
+            }
+        }
+        if (methode === 'carte') {
+            const num = modal.querySelector('#paiement-carte-num')?.value.trim();
+            const exp = modal.querySelector('#paiement-carte-exp')?.value.trim();
+            const cvc = modal.querySelector('#paiement-carte-cvc')?.value.trim();
+            if (!num || !exp || !cvc) {
+                alert('Veuillez remplir les informations de carte bancaire.');
+                return;
+            }
+        }
+        let panier = getPanier();
+        const idx = panier.findIndex(x => x.nom === item.nom && x.prix === item.prix);
+        if (idx >= 0) {
+            panier[idx].qte += 1;
+        } else {
+            panier.push({ nom: item.nom, prix: item.prix, qte: 1 });
+        }
+        setPanier(panier);
+        modal.style.display = 'none';
+        const user = getUser();
+        const mail = user && user.email ? user.email : email;
+        const nomUser = user && user.nom ? user.nom : nom;
+        sendConfirmationMail(
+            mail,
+            nomUser,
+            item.nom,
+            item.prix,
+            function(success) {
+                if (success) {
+                    alert(
+                        'Paiement validé avec ' +
+                        (methode === 'orange' ? 'Orange Money' : methode === 'wave' ? 'Wave' : methode === 'carte' ? 'Carte bancaire' : 'PayPal') +
+                        '.\nVotre commande est enregistrée !\nUn lien de confirmation a été envoyé à ' + mail + '.'
+                    );
+                } else {
+                    alert('Paiement validé, mais une erreur est survenue lors de l\'envoi du mail de confirmation.');
+                }
+            }
+        );
+    };
+}
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.btn-primary').forEach(btn => {
+        if (btn.textContent.trim().toLowerCase().includes("s'abonner")) {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const card = btn.closest('.pricing-card');
+                if (!card) return;
+                const nom = card.querySelector('h3') ? card.querySelector('h3').textContent.trim() : 'Abonnement';
+                const prixTxt = card.querySelector('.price') ? card.querySelector('.price').childNodes[0].textContent.trim() : '';
+                const prix = parseInt(prixTxt.replace(/[^\d]/g, '')) || 0;
+                showPaiementModal({ nom, prix });
+            });
+        }
+    });
+});
+</script>
+</body>
+</html>

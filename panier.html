@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Panier - SenAbonnement</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/panier.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Sen<span>Abonnement</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="abonnements.html">Abonnements</a></li>
+                    <li><a href="apropos.html">À propos</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li style="display: flex; align-items: center;">
+                        <a href="#" class="btn-login"><i class="fas fa-user"></i> Connexion</a>
+                        <div class="header-cart" style="margin-left:18px;position:relative;cursor:pointer;">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="header-cart-count">0</span>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <div class="panier-container" style="max-width:900px;margin:40px auto 60px auto;">
+        <h2 class="panier-title" style="font-size:2.2rem;text-align:center;color:#e67e22;">Votre Panier</h2>
+        <div id="panier-items"></div>
+        <div id="panier-total" class="panier-total"></div>
+        <form id="panier-checkout-form" autocomplete="off" style="margin-top:30px;">
+            <h3 style="color:#e67e22;margin:18px 0 8px 0;">Informations client</h3>
+            <input type="text" id="client-nom" placeholder="Votre nom complet" required style="width:100%;margin-bottom:10px;padding:10px;font-size:1.1rem;">
+            <input type="email" id="client-email" placeholder="Votre email" required style="width:100%;margin-bottom:10px;padding:10px;font-size:1.1rem;">
+            <input type="tel" id="client-tel" placeholder="Votre téléphone" required style="width:100%;margin-bottom:10px;padding:10px;font-size:1.1rem;">
+            <h3 style="color:#e67e22;margin:18px 0 8px 0;">Mode de paiement</h3>
+            <select id="paiement-methode" required style="width:100%;margin-bottom:10px;padding:10px;font-size:1.1rem;">
+                <option value="" disabled selected>Choisir</option>
+                <option value="orange">Orange Money</option>
+                <option value="wave">Wave</option>
+                <option value="carte">Carte bancaire</option>
+                <option value="paypal">PayPal</option>
+            </select>
+            <div id="paiement-details"></div>
+            <div style="text-align:right;margin-top:18px;">
+                <button type="submit" class="panier-btn" style="background:#e67e22;color:#fff;border:none;border-radius:8px;padding:18px 38px;font-size:1.25rem;font-weight:700;cursor:pointer;">Valider la commande</button>
+            </div>
+        </form>
+    </div>
+    <script src="assets/js/auth.js"></script>
+    <script>
+        function renderPanier() {
+            let panier = JSON.parse(localStorage.getItem('senabonnement_panier') || '[]');
+            let itemsDiv = document.getElementById('panier-items');
+            let totalDiv = document.getElementById('panier-total');
+            if (!panier.length) {
+                itemsDiv.innerHTML = `<div class="panier-empty" style="text-align:center;color:#7f8c8d;font-size:1.2rem;margin:40px 0;">Votre panier est vide.</div>`;
+                totalDiv.textContent = '';
+                document.getElementById('panier-checkout-form').style.display = 'none';
+                return;
+            }
+            document.getElementById('panier-checkout-form').style.display = '';
+            itemsDiv.innerHTML = panier.map((item, idx) => `
+                <div class="panier-item" style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f3e6d1;padding:18px 0;">
+                    <div>
+                        <span class="panier-item-name" style="font-weight:600;color:#e67e22;">${item.nom}</span>
+                        <span style="color:#333;margin-left:8px;">x${item.qte}</span>
+                    </div>
+                    <div style="display:flex;align-items:center;">
+                        <span class="panier-item-price" style="color:#e67e22;font-weight:600;margin-right:12px;">${item.prix.toLocaleString()} XOF</span>
+                        <button class="panier-qty-moins" data-idx="${idx}" style="background:#e67e22;color:#fff;border:none;width:32px;height:32px;border-radius:50%;font-size:1.2rem;margin-right:4px;cursor:pointer;">-</button>
+                        <button class="panier-qty-plus" data-idx="${idx}" style="background:#e67e22;color:#fff;border:none;width:32px;height:32px;border-radius:50%;font-size:1.2rem;margin-right:4px;cursor:pointer;">+</button>
+                        <button class="panier-item-remove" data-idx="${idx}" style="background:#e74c3c;color:#fff;border:none;border-radius:7px;padding:7px 13px;cursor:pointer;font-size:1rem;">Suppr.</button>
+                    </div>
+                </div>
+            `).join('');
+            let total = panier.reduce((sum, item) => sum + item.prix * item.qte, 0);
+            totalDiv.textContent = `Total : ${total.toLocaleString()} XOF`;
+        }
+
+        function updatePanierEvents() {
+            document.querySelectorAll('.panier-qty-moins').forEach(btn => {
+                btn.onclick = function() {
+                    let idx = parseInt(this.dataset.idx);
+                    let panier = JSON.parse(localStorage.getItem('senabonnement_panier') || '[]');
+                    if (panier[idx].qte > 1) {
+                        panier[idx].qte--;
+                        localStorage.setItem('senabonnement_panier', JSON.stringify(panier));
+                        renderPanier();
+                        updatePanierEvents();
+                        document.body.dispatchEvent(new Event('panier:updated'));
+                    }
+                };
+            });
+            document.querySelectorAll('.panier-qty-plus').forEach(btn => {
+                btn.onclick = function() {
+                    let idx = parseInt(this.dataset.idx);
+                    let panier = JSON.parse(localStorage.getItem('senabonnement_panier') || '[]');
+                    panier[idx].qte++;
+                    localStorage.setItem('senabonnement_panier', JSON.stringify(panier));
+                    renderPanier();
+                    updatePanierEvents();
+                    document.body.dispatchEvent(new Event('panier:updated'));
+                };
+            });
+            document.querySelectorAll('.panier-item-remove').forEach(btn => {
+                btn.onclick = function() {
+                    let idx = parseInt(this.dataset.idx);
+                    let panier = JSON.parse(localStorage.getItem('senabonnement_panier') || '[]');
+                    panier.splice(idx, 1);
+                    localStorage.setItem('senabonnement_panier', JSON.stringify(panier));
+                    renderPanier();
+                    updatePanierEvents();
+                    document.body.dispatchEvent(new Event('panier:updated'));
+                };
+            });
+        }
+
+        function updatePaiementDetails() {
+            const paiementMethode = document.getElementById('paiement-methode');
+            const paiementDetails = document.getElementById('paiement-details');
+            if (!paiementMethode) return;
+            paiementMethode.onchange = function() {
+                let html = '';
+                if (this.value === 'orange' || this.value === 'wave') {
+                    html = `
+                        <input type="tel" id="paiement-numero" placeholder="Numéro de téléphone du compte" required style="width:100%;margin-bottom:10px;padding:10px;font-size:1.1rem;">
+                        <input type="text" id="paiement-preuve" placeholder="Référence ou preuve de paiement" required style="width:100%;margin-bottom:10px;padding:10px;font-size:1.1rem;">
+                    `;
+                } else if (this.value === 'carte') {
+                    html = `
+                        <input type="text" id="paiement-carte-num" placeholder="Numéro de carte" required style="width:100%;margin-bottom:10px;padding:10px;font-size:1.1rem;">
+                        <input type="text" id="paiement-carte-exp" placeholder="MM/AA" required style="width:48%;margin-bottom:10px;padding:10px;display:inline-block;">
+                        <input type="text" id="paiement-carte-cvc" placeholder="CVC" required style="width:48%;margin-bottom:10px;padding:10px;display:inline-block;float:right;">
+                    `;
+                } else {
+                    html = '';
+                }
+                paiementDetails.innerHTML = html;
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderPanier();
+            updatePanierEvents();
+            updatePaiementDetails();
+
+            // Pré-remplir si connecté
+            const user = typeof getUser === 'function' && getUser();
+            if (user) {
+                document.getElementById('client-nom').value = user.nom || '';
+                document.getElementById('client-email').value = user.email || '';
+            }
+
+            document.getElementById('panier-checkout-form').onsubmit = function(e) {
+                e.preventDefault();
+                let panier = JSON.parse(localStorage.getItem('senabonnement_panier') || '[]');
+                if (!panier.length) return;
+                if (typeof requireAuthBeforeOrder === 'function' && !requireAuthBeforeOrder(() => {})) return;
+                const nom = document.getElementById('client-nom').value.trim();
+                const email = document.getElementById('client-email').value.trim();
+                const tel = document.getElementById('client-tel').value.trim();
+                const methode = document.getElementById('paiement-methode').value;
+                if (!nom || !email || !tel || !methode) return;
+                if (methode === 'orange' || methode === 'wave') {
+                    const num = document.getElementById('paiement-numero')?.value.trim();
+                    const preuve = document.getElementById('paiement-preuve')?.value.trim();
+                    if (!num || !preuve) {
+                        alert('Veuillez remplir les informations de paiement mobile.');
+                        return;
+                    }
+                }
+                if (methode === 'carte') {
+                    const num = document.getElementById('paiement-carte-num')?.value.trim();
+                    const exp = document.getElementById('paiement-carte-exp')?.value.trim();
+                    const cvc = document.getElementById('paiement-carte-cvc')?.value.trim();
+                    if (!num || !exp || !cvc) {
+                        alert('Veuillez remplir les informations de carte bancaire.');
+                        return;
+                    }
+                }
+                alert(
+                    'Paiement validé avec ' +
+                    (methode === 'orange' ? 'Orange Money' : methode === 'wave' ? 'Wave' : methode === 'carte' ? 'Carte bancaire' : 'PayPal') +
+                    '.\nVotre commande est enregistrée !\nUn email de confirmation a été envoyé à ' + email + '.'
+                );
+                localStorage.setItem('senabonnement_panier', '[]');
+                renderPanier();
+                updatePanierEvents();
+                document.body.dispatchEvent(new Event('panier:updated'));
+            };
+        });
+    </script>
+</body>
+</html>
